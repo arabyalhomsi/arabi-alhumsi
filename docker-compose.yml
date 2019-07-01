@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db-postgres:
+    image: postgres
+    restart: always
+    ports: 
+      - 5432:5432
+    environment: 
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: arabi_web
+    networks:
+      - webnet
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 4001:8080
+    networks:
+      - webnet
+
+  arabi-backend:
+    image: arabi_backend_image
+    volumes:
+      - ./backend:/app
+    ports:
+      - "4000:80"
+    restart: always
+    networks:
+      - webnet
+  arabi-frontend:
+    image: arabi_frontend_image:latest
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "4002:8080"
+    restart: unless-stopped
+    networks:
+      - webnet
+networks:
+  webnet:
