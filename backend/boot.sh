@@ -18,6 +18,8 @@ until postgres_ready; do
   sleep 1
 done
 
+# cat <(echo "yes") - | python manage.py flush
+
 python manage.py makemigrations
 
 python manage.py migrate

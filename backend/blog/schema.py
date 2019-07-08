@@ -10,13 +10,53 @@ class CommentType(DjangoObjectType):
     class Meta:
         model = Comment
 
-class PostInput(graphene.InputObjectType):  
-    id = graphene.ID()
+class PostInput(graphene.InputObjectType):
     title = graphene.String()
-
-class CommentInput(graphene.InputObjectType):  
-    id = graphene.ID()
     content = graphene.String()
+
+class CommentInput(graphene.InputObjectType):
+    content = graphene.String()
+    post = graphene.ID()
+
+class CreatePost(graphene.Mutation):
+    class Arguments:
+        input = PostInput(required=True)
+
+    ok = graphene.Boolean()
+    post = graphene.Field(PostType)
+
+    @staticmethod
+    def mutate(root, info, input=None):
+        ok = True
+        post_instance = Post(title=input.title, content=input.content)
+        post_instance.save()
+        return CreatePost(ok=ok, post=post_instance)
+
+
+class UpdatePost(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        input = PostInput(required=True)
+
+    ok = graphene.Boolean()
+    post = graphene.Field(PostType)
+
+    @staticmethod
+    def mutate(root, info, input=None):
+        ok = False
+        post_instance = Post.objects.get(pk=id)
+        if post_instance:
+            ok = True
+            post_instance.title = input.title
+            post_instance.content = input.content
+            post_instance.save()
+            return UpdatePost(ok=ok, post=post_instance)
+        return UpdatePost(ok=ok, post=None)
+
+class Mutation(graphene.ObjectType):
+    create_post = CreatePost.Field()
+    update_post = UpdatePost.Field()
+
 
 class Query(ObjectType):  
     post = graphene.Field(PostType, id=graphene.Int())
@@ -47,4 +87,4 @@ class Query(ObjectType):
         return Comment.objects.all()
 
 
-schema = graphene.Schema(query=Query)  
+schema = graphene.Schema(query=Query, mutation=Mutation)  

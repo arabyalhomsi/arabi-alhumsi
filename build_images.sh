@@ -9,6 +9,8 @@ elif [ "$1" = "backend" ]
 then
     cd backend
     docker build --tag=arabi_backend_image .
+    cd ..
+    docker-compose up -d
 else
     # echo "specify which image as a first argument (frontend, backend)"
     cd frontend
@@ -16,4 +18,6 @@ else
     cd ..
     cd backend
     docker build --tag=arabi_backend_image .
+    cd ..
+    docker-compose up -d
 fi

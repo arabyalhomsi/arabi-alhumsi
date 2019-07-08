@@ -25,13 +25,16 @@ SECRET_KEY = '5iy3bu9eirwj3_3%oe2m1_6+zp2r%5!-ul#tfs8my@)i0-=1of'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # '*'
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'graphene_django',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,14 +48,19 @@ GRAPHENE = {
     'SCHEMA': 'blog.schema.schema'
 }
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:4002"
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
