@@ -9,15 +9,25 @@ const env = loadEnv([
 
 module.exports = {
   client: {
-    service: env.VUE_APP_APOLLO_ENGINE_SERVICE,
-    includes: ['src/**/*.{js,jsx,ts,tsx,vue,gql}']
+    name: "arabialhumsi-client",
+    service: {
+      name: env.VUE_APP_APOLLO_ENGINE_SERVICE,
+      url: "http://localhost:4000/graphql",
+    },
+    // service: env.VUE_APP_APOLLO_ENGINE_SERVICE,
+    // includes: ['src/**/*.{js,jsx,ts,tsx,vue,gql}']
   },
-  service: {
-    name: env.VUE_APP_APOLLO_ENGINE_SERVICE,
-    localSchemaFile: path.resolve(__dirname, './node_modules/.temp/graphql/schema.json')
-  },
-  engine: {
-    endpoint: process.env.APOLLO_ENGINE_API_ENDPOINT,
-    apiKey: env.VUE_APP_APOLLO_ENGINE_KEY
-  }
+  // service: {
+  //   endpoint: {
+  //     name: 'arabyalhomsi-webserver',
+  //     url: "http://localhost:4000/graphql/"
+  //   },
+  //   // localSchemaFile: './graphql/posts.gql'
+  //   // name: env.VUE_APP_APOLLO_ENGINE_SERVICE,
+  //   // localSchemaFile: path.resolve(__dirname, './node_modules/.temp/graphql/schema.json')
+  // },
+  // engine: {
+  //   endpoint: process.env.APOLLO_ENGINE_API_ENDPOINT,
+  //   apiKey: env.VUE_APP_APOLLO_ENGINE_KEY
+  // }
 }
