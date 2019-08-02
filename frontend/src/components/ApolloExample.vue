@@ -1,17 +1,17 @@
 <template>
   <div>
     
-    <div v-for="post in posts" v-bind:key="post.id">
+    <!-- <div v-for="post in posts" v-bind:key="post.id">
       <h1>{{ post.title }}</h1>
       <p>{{ post.id }}</p>
-    </div>
+    </div> -->
   </div>
-
 </template>
 
 <script>
 import gql from 'graphql-tag'
-import getPosts from '../graphql/getPosts'
+import getPosts from '../graphql/posts.gql'
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   data () {
@@ -20,44 +20,16 @@ export default {
       newMessage: '',
     }
   },
-
-  apollo: {
-    // files: FILES,
-    posts: gql(getPosts) 
-  },
-  mounted () {
-    console.log(getPosts)
+  created () {
   },
   computed: {
-    formValid () {
-      return this.newMessage
-    },
+    ...mapGetters({
+    }),
   },
 
   methods: {
-    onMessageAdded (previousResult, { subscriptionData }) {
-      return {
-        messages: [
-          ...previousResult.messages,
-          subscriptionData.data.messageAdded,
-        ],
-      }
-    },
-
-    async onUploadImage ({ target }) {
-      if (!target.validity.valid) return
-      await this.$apollo.mutate({
-        mutation: UPLOAD_FILE,
-        variables: {
-          file: target.files[0],
-        },
-        update: (store, { data: { singleUpload } }) => {
-          const data = store.readQuery({ query: FILES })
-          data.files.push(singleUpload)
-          store.writeQuery({ query: FILES, data })
-        },
-      })
-    }
+    ...mapActions({
+    })
   },
 }
 </script>

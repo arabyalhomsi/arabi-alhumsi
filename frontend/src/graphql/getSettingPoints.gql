@@ -1,0 +1,6 @@
+query getSettingPoints{
+	settingPoints {
+    key
+    value
+  }
+}

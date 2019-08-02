@@ -1,0 +1,1 @@
+[{"model": "settings.settingPoint", "fields": {"key": "main_title", "value": "Arabi Alhumsi"}}, {"model": "settings.settingPoint", "fields": {"key": "menu_items", "value": {"Home": "/", "Timeline": "/timeline", "Projects": "/projects", "Services": "/services", "Blog": "/blog", "About": "/about"}}}]

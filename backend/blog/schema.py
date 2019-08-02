@@ -1,6 +1,9 @@
 import graphene  
 from graphene_django.types import DjangoObjectType, ObjectType  
 from blog.models import Post, Comment
+from django.http import HttpResponse
+from graphql import GraphQLError
+from django.core.exceptions import ValidationError
 
 class PostType(DjangoObjectType):
     class Meta:
@@ -13,6 +16,7 @@ class CommentType(DjangoObjectType):
 class PostInput(graphene.InputObjectType):
     title = graphene.String()
     content = graphene.String()
+    pub_date = graphene.Date()
 
 class CommentInput(graphene.InputObjectType):
     content = graphene.String()
@@ -27,11 +31,16 @@ class CreatePost(graphene.Mutation):
 
     @staticmethod
     def mutate(root, info, input=None):
+        pub_date = input.pub_date or None
+        
+        # if pub_date is not None:
         ok = True
         post_instance = Post(title=input.title, content=input.content)
         post_instance.save()
         return CreatePost(ok=ok, post=post_instance)
 
+        
+        # return None
 
 class UpdatePost(graphene.Mutation):
     class Arguments:
@@ -49,6 +58,7 @@ class UpdatePost(graphene.Mutation):
             ok = True
             post_instance.title = input.title
             post_instance.content = input.content
+            post_instance.pub_date = input.pub_date
             post_instance.save()
             return UpdatePost(ok=ok, post=post_instance)
         return UpdatePost(ok=ok, post=None)

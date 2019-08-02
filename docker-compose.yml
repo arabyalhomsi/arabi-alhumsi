@@ -10,8 +10,6 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root
       POSTGRES_DB: arabi_web
-    # networks:
-      # - webnet
 
   adminer:
     image: adminer
@@ -20,8 +18,6 @@ services:
       - "db-postgres"
     ports:
       - 4001:8080
-    # networks:
-      # - webnet
 
   arabi-backend:
     image: arabi_backend_image
@@ -34,8 +30,6 @@ services:
       - db-postgres
     depends_on: 
       - "db-postgres"
-    # networks:
-      # - webnet
 
   arabi-frontend:
     image: arabi_frontend_image:latest
@@ -44,7 +38,5 @@ services:
     ports:
       - "4002:8080"
     restart: always
-    # networks:
-      # - webnet
-# networks:
-  # webnet:
+    links:
+      - arabi-backend

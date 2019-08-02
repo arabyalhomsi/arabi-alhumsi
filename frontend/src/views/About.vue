@@ -16,9 +16,9 @@ export default {
     ApolloExample
   },
   mounted () {
-    axios.post('http://localhost:4000/graphql/', {
-      query: '{posts {id, title}}'
-    })
+    // axios.post('http://localhost:4000/graphql/', {
+    //   query: '{posts {id, title}}'
+    // })
   }
 }
 </script>

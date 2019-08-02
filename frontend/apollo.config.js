@@ -8,14 +8,14 @@ const env = loadEnv([
 ])
 
 module.exports = {
-  client: {
+  service: {
     name: "arabialhumsi-client",
     service: {
       name: env.VUE_APP_APOLLO_ENGINE_SERVICE,
-      url: "http://localhost:4000/graphql",
+      url: "http://localhost:4000/graphql/",
     },
     // service: env.VUE_APP_APOLLO_ENGINE_SERVICE,
-    // includes: ['src/**/*.{js,jsx,ts,tsx,vue,gql}']
+    includes: ['src/**/*.{js,jsx,ts,tsx,vue,gql}']
   },
   // service: {
   //   endpoint: {

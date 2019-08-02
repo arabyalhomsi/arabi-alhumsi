@@ -26,7 +26,7 @@ SECRET_KEY = '5iy3bu9eirwj3_3%oe2m1_6+zp2r%5!-ul#tfs8my@)i0-=1of'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # '*'
+    '*'
 ]
 
 
@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'settings'
 ]
 
 GRAPHENE = {  
-    'SCHEMA': 'blog.schema.schema'
+    'SCHEMA': 'backend.schema.schema'
 }
 
 CORS_ORIGIN_WHITELIST = [
@@ -136,3 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+FIXTURE_DIRS = (
+   '/settings/fixtures/',
+)
