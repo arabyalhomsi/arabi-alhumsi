@@ -1,0 +1,64 @@
+@import './../Timeline.scss';
+
+.timeline__item {
+    padding: 1rem;
+    border-image-slice: 1;
+    position: relative;
+    margin: 1rem 3rem 1rem 1rem;
+    clear: both;
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+    }
+  
+    
+    @media screen and (min-width: $breakpoint) {
+      width: 44%;
+      margin: 1rem;
+      
+      &:nth-of-type(2n) {
+        float: right;
+        margin: 1rem;
+        border-image: linear-gradient(to right, $lineColor 0%, $color 100%);
+        border-image-slice: 1;
+  
+        &:before {
+          right: auto;
+          left: -30px;
+          border-color: $lineColor;
+        }
+      }
+    }
+  }
+
+.timeline__item--year {
+    text-align: center;
+    max-width: 150px;
+    margin: 0 48px 0 auto;
+    font-size: 1.8rem;
+    background-color: $yearBgColor;
+    line-height: 1;
+    border-image: none;
+    padding: .5rem 1rem 1rem;
+    
+    &:before {
+      display: none;
+    }
+    
+    @media screen and (min-width: $breakpoint) {
+      text-align: center;
+        margin: 0 auto;
+      
+      &:nth-of-type(2n) {
+        float: none;
+        margin: 0 auto;
+        border-image: none;
+    
+        &:before {
+          display: none;
+        }
+        }
+    }
+}

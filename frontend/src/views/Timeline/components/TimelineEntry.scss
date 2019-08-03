@@ -1,0 +1,52 @@
+@import './../Timeline.scss';
+
+.timeline__item {
+  padding: 1rem;
+  border-image-slice: 1;
+  position: relative;
+  margin: 1rem 3rem 1rem 1rem;
+  clear: both;
+  
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+  }
+
+  
+  @media screen and (min-width: $breakpoint) {
+    width: 44%;
+    margin: 1rem;
+    
+    &:nth-of-type(2n) {
+      float: right;
+      margin: 1rem;
+      border-image: linear-gradient(to right, $lineColor 0%, $color 100%);
+      border-image-slice: 1;
+
+      &:before {
+        right: auto;
+        left: -30px;
+        border-color: $lineColor;
+      }
+    }
+  }
+}
+
+  
+.timeline__title {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+}
+
+.timeline__blurb {
+    line-height: 1.5;
+    font-size: 1rem;
+    margin: .5rem 0 0;
+}
+
+.timeline__description {
+    line-height: 1.5;
+    font-size: 1rem;
+}

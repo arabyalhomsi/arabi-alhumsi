@@ -1,95 +1,70 @@
 <template>
   <div>
     <div class="timeline">
-      
-      <h2 class="timeline__item timeline__item--year">1985</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Born</h3>
-        <p class="timeline__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem modi laborum repellat quos facilis expedita dolor quasi veritatis assumenda. Obcaecati veritatis commodi fuga iusto in possimus praesentium laborum ex tenetur.</p>
+      <div v-for="timelineEntry in computedTimelineEntries" v-bind:key="timelineEntry.year">
+        <TimelineYear
+          :date="timelineEntry.year" />
+
+
+        <TimelineEntry
+          v-for="mEntry in timelineEntry.entries"
+          v-bind:key="mEntry.id"
+          :title="mEntry.title"
+          :content="mEntry.content" />
       </div>
-      
-      <h2 class="timeline__item timeline__item--year">2003</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Graduated High School</h3>
-        <p class="timeline__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem modi laborum repellat quos facilis expedita dolor quasi veritatis assumenda. Obcaecati veritatis commodi fuga iusto in possimus praesentium laborum ex tenetur.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2004</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Started at Fox Valley Technical College (FVTC) in an Electrical Engineering program</h3>
-        <p class="timeline__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem modi laborum repellat quos facilis expedita dolor quasi veritatis assumenda. Obcaecati veritatis commodi fuga iusto in possimus praesentium laborum ex tenetur.</p>     
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2006</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Changed at FVTC to Web Design & Development program</h3>
-        <p class="timeline__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem modi laborum repellat quos facilis expedita dolor quasi veritatis assumenda. Obcaecati veritatis commodi fuga iusto in possimus praesentium laborum ex tenetur.</p>      
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2007</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Web Design Internship</h3>
-        <p class="timeline__blurb">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae aperiam, laboriosam mollitia molestias nostrum tempore recusandae pariatur nisi quasi nihil incidunt. Possimus officia eum assumenda dolore tempora nulla nam quod.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2008</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">IT Internship</h3>
-        <p class="timeline__blurb">Started internship at company 2</p>
-      </div>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Got Married</h3>
-      </div>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Application Engineer</h3>
-        <p class="timeline__blurb">Started web design/dev job at company 2.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2012</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">First Child</h3>
-        <p class="timeline__blurb">Spouse and I welcomed our first daughter.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2015</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Second Child</h3>
-        <p class="timeline__blurb">Spouse and I welcomed our second daughter.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2016</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Lead Application Engineer</h3>
-        <p class="timeline__blurb">Promotion to mid-level role.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2018</h2>
-      
-      <div class="timeline__item">
-        <h3 class="timeline__title">Aerial/Circus Arts</h3>
-        <p class="timeline__blurb">Started taking classes to learn aerial silks, hoop, and hammock.</p>
-      </div>
-      
-      <h2 class="timeline__item timeline__item--year">2019</h2>
-      
     </div>
   </div>
 </template>
 
 <script>
+import TimelineEntry from './components/TimelineEntry'
+import TimelineYear from './components/TimelineYear'
+import getTimelineEntries from '../../graphql/getTimelineEntries.gql'
+
 export default {
     name: 'Timeline',
+    components: {
+      TimelineEntry,
+      TimelineYear
+    },
+    computed: {
+      computedTimelineEntries () {
+        const timelineEntries = this.timelineEntries
+        if (!timelineEntries)
+          return false
+        
+        let entriesArr = []
+        
+        timelineEntries.forEach((entry, entryIndex) => {
+          let year = new Date(entry.date).getFullYear()
+
+          let newEntryObj = {
+            title: entry.title,
+            content: entry.content,
+            id: entry.id,
+            date: entry.date
+          }
+
+          let indexOfNewEntry = entriesArr.findIndex(ob => ob.year == year)
+          if (indexOfNewEntry > 0) {
+            entriesArr[indexOfNewEntry].entries.push(newEntryObj)
+          } else {
+            let entries = []
+            entries.push(newEntryObj)
+            entriesArr.push({
+              year: year,
+              entries: entries
+            })
+          }
+        })
+        return entriesArr
+      }
+    },
+    created () {
+    },
+    apollo: {
+      timelineEntries: getTimelineEntries
+    }
 
 }
 </script>

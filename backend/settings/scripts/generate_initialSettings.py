@@ -28,6 +28,6 @@ initialSettings = [
 
 
 initialSettingsJSON = json.dumps(initialSettings)
-f = open("../fixtures/initialSettings.json", "w")
+f = open("../fixtures/initialSettingsSettings.json", "w")
 f.write(initialSettingsJSON)
 f.close()

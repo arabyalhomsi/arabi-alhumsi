@@ -1,5 +1,0 @@
-query ($key: String!){
-    settingPoint(key: $key) {
-        value
-    }
-}

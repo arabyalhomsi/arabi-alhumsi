@@ -1,9 +1,6 @@
 import graphene  
 from graphene_django.types import DjangoObjectType, ObjectType  
 from blog.models import Post, Comment
-from django.http import HttpResponse
-from graphql import GraphQLError
-from django.core.exceptions import ValidationError
 
 class PostType(DjangoObjectType):
     class Meta:

@@ -1,49 +1,31 @@
 <template>
   <div id="app">
-    <h1 class="logo">{{ this.main_title }}</h1>
-
+    <h1 class="logo">{{ this.SettingPoints.main_title }}</h1>
+    <div id="nav">
+      <router-link
+        v-for="(value, name) in this.SettingPoints.menu_items"
+        v-bind:key="name"
+        :to="value"
+        >{{name}} | </router-link>
+    </div>
     <router-view />
 
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/timeline">Timeline</router-link> |
-      <router-link to="/projects">Projects</router-link> |
-      <router-link to="/services">Services</router-link> |
-      <router-link to="/blog">Blog</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
-import getSettingPoints from "./graphql/getSettingPoints.gql";
-import { apolloClient }  from "./vue-apollo"
 
 export default {
   name: 'App',
   data: () => ({
-    main_title: ''
   }),
   async created () {
-    await this.fetchSettingPoints()
-
-    this.main_title = this.settingPoint('main_title')
-
   },
   mounted () {
-
   },
   computed: {
-    ...mapGetters({
-      settingPoints: 'settings/settingPoints',
-      settingPoint: 'settings/settingPoint',
-    })
   },
   methods: {
-    ...mapActions({
-      fetchSettingPoints: 'settings/fetchSettingPoints',
-    })
   }
 }
 </script>

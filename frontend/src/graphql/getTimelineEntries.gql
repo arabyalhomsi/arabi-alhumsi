@@ -1,0 +1,8 @@
+query {
+  timelineEntries{
+    id
+    title
+    content
+    date
+  }
+}

@@ -1,13 +1,24 @@
 import graphene  
 import blog.schema
 import settings.schema
+import timeline.schema
 
-class Query(blog.schema.Query, settings.schema.Query, graphene.ObjectType):  
+class Query(
+    blog.schema.Query,
+    settings.schema.Query,
+    timeline.schema.Query,
+
+    graphene.ObjectType):  
     # This class will inherit from multiple Queries
     # as we begin to add more apps to our project
     pass
 
-class Mutation(blog.schema.Mutation, settings.schema.Mutation, graphene.ObjectType):  
+class Mutation(
+    blog.schema.Mutation,
+    settings.schema.Mutation,
+    # timeline.schema.Mutation,
+    
+    graphene.ObjectType):  
     # This class will inherit from multiple Queries
     # as we begin to add more apps to our project
     pass

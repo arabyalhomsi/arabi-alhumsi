@@ -1,6 +1,10 @@
 import getSettingPoints from "../../graphql/getSettingPoints.gql";
 import { apolloClient }  from "../../vue-apollo"
 
+// wrong: apolloClient and vuex should be completely separate
+// single source of truth
+// vuex only for local state that does not come from an API
+
 const state = {
     settingPoints: []
 }

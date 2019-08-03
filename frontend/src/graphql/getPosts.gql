@@ -1,9 +1,9 @@
 query getPosts {
     posts {
-    id
-    title
+        id
+        title
     }
     comments {
-    content
+        content
     }
 }
