@@ -44,9 +44,9 @@ export default {
             id: entry.id,
             date: entry.date
           }
-
+          
           let indexOfNewEntry = entriesArr.findIndex(ob => ob.year == year)
-          if (indexOfNewEntry > 0) {
+          if (indexOfNewEntry >= 0) {
             entriesArr[indexOfNewEntry].entries.push(newEntryObj)
           } else {
             let entries = []
@@ -57,6 +57,7 @@ export default {
             })
           }
         })
+        console.log(entriesArr)
         return entriesArr
       }
     },
