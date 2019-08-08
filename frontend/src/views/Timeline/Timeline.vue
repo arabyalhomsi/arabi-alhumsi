@@ -57,7 +57,14 @@ export default {
             })
           }
         })
-        console.log(entriesArr)
+        entriesArr = entriesArr.sort((a, b) => {
+           if (a.year > b.year) {
+              return -1
+            }
+
+            return 1
+        })
+
         return entriesArr
       }
     },
