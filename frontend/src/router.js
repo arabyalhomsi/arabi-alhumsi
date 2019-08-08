@@ -27,6 +27,12 @@ export default new Router({
       name: "timeline",
       component: () => 
         import("./views/Timeline/Timeline.vue")
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () =>
+        import("./views/Blog/Blog.vue")
     }
   ]
 });

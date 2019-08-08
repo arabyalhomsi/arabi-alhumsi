@@ -1,4 +1,4 @@
-import json, logging
+import json, logging, os
 
 menu_items = {
   "Home": "/",
@@ -28,6 +28,10 @@ initialSettings = [
 
 
 initialSettingsJSON = json.dumps(initialSettings)
-f = open("../fixtures/initialSettingsSettings.json", "w")
+
+if not os.path.exists('../fixtures'):
+  os.mkdir('../fixtures')
+
+f = open("../fixtures/initialSettingsSettings.json", "w+")
 f.write(initialSettingsJSON)
 f.close()

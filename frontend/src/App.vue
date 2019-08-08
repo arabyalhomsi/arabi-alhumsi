@@ -35,19 +35,21 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Aref+Ruqaa&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora|Open+Sans&display=swap');
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000;
 }
 #nav {
   padding: 30px;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #000;
+    text-decoration: none;
     &.router-link-exact-active {
       color: #42b983;
     }
