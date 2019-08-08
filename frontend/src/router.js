@@ -33,6 +33,26 @@ export default new Router({
       name: 'blog',
       component: () =>
         import("./views/Blog/Blog.vue")
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () =>
+        import("./views/Admin/Admin.vue"),
+      children: [
+        {
+          path: 'blog',
+          name: 'adminBlog',
+          component: () =>
+            import("./views/Admin/Blog/AdminBlog.vue"),
+        },
+        {
+          path: 'blog/:id',
+          name: 'adminBlogPost',
+          component: () => 
+            import("./views/Admin/Blog/AdminBlogPost.vue")
+        },
+      ]
     }
   ]
 });

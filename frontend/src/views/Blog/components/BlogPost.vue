@@ -2,7 +2,7 @@
     <div class="BlogPost">
         <h1>{{ post.title }}</h1>
         <span>{{ computedPubDate }}</span>
-        <p>{{ post.content }}</p>
+        <p v-html="post.content"></p>
     </div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
         computedPubDate() {
             return this.readableDate(this.post.pubDate)
         }
+    },
+    created () {
+
+        console.log(this.$route)
     }
 }
 </script>

@@ -1,0 +1,15 @@
+mutation editPost ($id: Int!, $title: String!, $content: String!, $pubDate: DateTime!) {
+  updatePost(id: $id, input:{
+    title: $title,
+    content: $content,
+    pubDate: $pubDate
+  }) {
+    ok
+    post {
+      id
+      title
+      content
+      pubDate
+    }
+  }
+}

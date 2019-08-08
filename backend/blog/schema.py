@@ -13,7 +13,7 @@ class CommentType(DjangoObjectType):
 class PostInput(graphene.InputObjectType):
     title = graphene.String()
     content = graphene.String()
-    pub_date = graphene.Date()
+    pub_date = graphene.DateTime()
 
 class CommentInput(graphene.InputObjectType):
     content = graphene.String()
@@ -48,7 +48,7 @@ class UpdatePost(graphene.Mutation):
     post = graphene.Field(PostType)
 
     @staticmethod
-    def mutate(root, info, input=None):
+    def mutate(root, info, id, input=None):
         ok = False
         post_instance = Post.objects.get(pk=id)
         if post_instance:

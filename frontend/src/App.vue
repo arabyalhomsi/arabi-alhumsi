@@ -15,8 +15,13 @@
 
 <script>
 
+import Menu from '@/components/Menu/Menu'
+
 export default {
   name: 'App',
+  components: {
+    Menu
+  },
   data: () => ({
   }),
   async created () {
@@ -24,6 +29,9 @@ export default {
   mounted () {
   },
   computed: {
+    computedMenuItems() {
+      
+    }
   },
   methods: {
   }
