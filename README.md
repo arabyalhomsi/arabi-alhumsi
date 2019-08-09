@@ -1,4 +1,6 @@
-# user stories
+# Personal website made with Docker, Django, and VueJS
+
+## user stories
 - As a user, I need to see png logo because it is faster than loading a font
 - As a user, I need a blog because it informs me about the owner
     - As a user, I need to see title of posts with short descriptions on the main page
