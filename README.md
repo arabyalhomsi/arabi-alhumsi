@@ -9,4 +9,10 @@
 
 - As an owner, I need to be able to manage my blog
     - I need to see a overview of the posts
-    
+
+## feature list
+- Cassandra for metrics
+- Workers to extract metrics and conclusions
+
+## Future Improvments
+- use uWebSockets for the oauth2 server

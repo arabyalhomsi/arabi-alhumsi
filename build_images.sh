@@ -1,5 +1,5 @@
 #!/bin/sh
-#  This file builds the images
+#  This file builds the images and starts the containers
 
 if [ "$1" = "frontend" ]
 then
@@ -9,6 +9,12 @@ elif [ "$1" = "backend" ]
 then
     cd backend
     docker build --tag=arabi_backend_image .
+    cd ..
+    docker-compose up -d
+elif [ "$1" = "oauth2" ]
+then
+    cd oauth2
+    docker build --tag=arabi_oauth2_image .
     cd ..
     docker-compose up -d
 else

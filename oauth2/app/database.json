@@ -1,0 +1,9 @@
+{
+    "dev": {
+        "driver": "pg",
+        "user": {"ENV": "PGUSER"},
+        "password": {"ENV": "PGPASSWORD"},
+        "host": {"ENV": "PGHOST"},
+        "database": "arabi_web"
+    }
+}
