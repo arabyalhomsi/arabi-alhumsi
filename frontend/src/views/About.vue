@@ -6,11 +6,12 @@
 
 <script>
 
-import axios from 'axios'
-
 export default {
   name: 'About',
   components: {
+  },
+  created() {
+
   },
   mounted () {
     // axios.post('http://localhost:4000/graphql/', {

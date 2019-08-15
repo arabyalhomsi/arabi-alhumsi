@@ -1,21 +1,6 @@
 version: '3'
 
 services:
-  # arabi-oauth2:
-  #   image: oryd/hydra
-  #   restart: always
-  #   ports: 
-  #     - 9000:4444
-  #     - 9001:4445
-  #     - 9020:4003
-  #   SECRETS_SYSTEM: SECRET
-  #   DSN: postgres://root:root@db-postgres:5432/arabi_web?sslmode=disable
-  #   command: migrate sql --yes postgres://root:root@db-postgres:5432/arabi_web?sslmode=disable
-  #   URLS_SELF_ISSUER: "http://localhost:9000/"
-  #   URLS_CONSENT: "http://localhost:9020/consent"
-  #   URLS_LOGIN: "http://localhost:9020/login"
-
-
   db-postgres:
     image: postgres
     restart: always
@@ -47,6 +32,7 @@ services:
       - PGHOST=db-postgres
       - PGPASSWORD=root
       - PGDATABASE=arabi_web
+      - SECRET=random_secure_secret
     links:
       - db-postgres
     depends_on: 
