@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arabi-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arabi-frontend
+  template:
+    metadata:
+      labels:
+        app: arabi-frontend
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: arabi-frontend
+        image: arabialhumsi/arabialhumsi:frontend
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 8080
+          name: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arabi-frontend
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: arabi-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arabi-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arabi-backend
+  template:
+    metadata:
+      labels:
+        app: arabi-backend
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: arabi-backend
+        image: arabialhumsi/arabialhumsi:backend
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 8000
+          name: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arabi-backend
+spec:
+  ports:
+  - port: 4000
+  selector:
+    app: arabi-backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arabi-oauth2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arabi-oauth2
+  template:
+    metadata:
+      labels:
+        app: arabi-oauth2
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: arabi-oauth2
+        image: arabialhumsi/arabialhumsi:oauth2
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 8080
+          name: oauth2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arabi-oauth2
+spec:
+  ports:
+  - port: 4003
+  selector:
+    app: arabi-oauth2

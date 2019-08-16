@@ -1,14 +1,35 @@
 # Personal website made with Docker, Django, and VueJS
 
 ## user stories
-- As a user, I need to see png logo because it is faster than loading a font
-- As a user, I need a blog because it informs me about the owner
-    - As a user, I need to see title of posts with short descriptions on the main page
-    - As a user, I need to be able to see the whole post when I click on it
-    - As a user, I need to be able to see the comments, and add new comments.
 
-- As an owner, I need to be able to manage my blog
-    - I need to see a overview of the posts
+- As a user, I need to be able to interact with the website
+    - login through social media
+    - comment
+    - submit a contact form
+    - view different content types
+
+- As an owner, I need to be able to manage the settings
+    - logo
+    - styles
+    - footer credentials
+    - menu items
+    - social media
+
+- As an owner, I need to be able to manage different content types
+    - CRUD for content types (such as a posts)
+    - types can have comments (or potential for different features)
+    - be able to assign a type to a page
+
+- As an owner, I need to be able to manage different pages
+    - CRUD for pages
+    - pages have different UIs
+        - Blog
+        - Timeline
+        - Projects
+        - Services
+        - custom page
+        - form page (or ability to add forms to pages)
+
 
 ## feature list
 - Cassandra for metrics

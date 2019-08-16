@@ -25,5 +25,8 @@ else
     cd backend
     docker build --tag=arabi_backend_image .
     cd ..
+    cd oauth2
+    docker build --tag=arabi_oauth2_image .
+    cd ..
     docker-compose up -d
 fi

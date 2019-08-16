@@ -14,8 +14,8 @@ Vue.use(SettingPointsGlobal)
 Vue.use(Helpers)
 
 new Vue({
-  router,
   store,
+  router,
   apolloProvider: createProvider(),
   render: h => h(App)
 }).$mount("#app");

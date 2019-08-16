@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import store from '@/store/index'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -35,24 +36,85 @@ export default new Router({
         import("./views/Blog/Blog.vue")
     },
     {
+      path: '/auth',
+      name: 'auth',
+      meta: {
+        guest: true
+      },
+      component: () =>
+        import("./views/Auth/Auth.vue"),
+      children: [
+        {
+          path: 'login',
+          name: 'authLogin',
+          meta: {
+            guest: true
+          },
+          component: () =>
+            import("./views/Auth/Login/Login.vue")
+        }
+      ]
+    },
+    {
       path: '/admin',
       name: 'admin',
+      meta: {
+        auth: true
+      },
       component: () =>
         import("./views/Admin/Admin.vue"),
       children: [
         {
           path: 'blog',
           name: 'adminBlog',
+          meta: {
+            auth: true
+          },
           component: () =>
             import("./views/Admin/Blog/AdminBlog.vue"),
         },
         {
           path: 'blog/:id',
           name: 'adminBlogPost',
+          meta: {
+            auth: true
+          },
           component: () => 
             import("./views/Admin/Blog/AdminBlogPost.vue")
         },
       ]
     }
   ]
-});
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta) next()
+  else if (to.meta.auth) {
+    const authenticated = store.getters['auth/authenticated']
+
+    if (!authenticated) {
+      next({
+        name: 'authLogin'
+      })
+    } else {
+      next()
+    }
+  }
+  else if (to.meta.guest) {
+    const authenticated = store.getters['auth/authenticated']
+
+    if (authenticated) {
+      next({
+        name: 'admin'
+      })
+    } else {
+      next()
+    }
+  }
+  else {
+    next()
+  }
+})
+
+
+export default router

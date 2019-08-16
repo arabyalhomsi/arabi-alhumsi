@@ -18,7 +18,8 @@
     "db-migrate": "^0.11.6",
     "body-parser": "^1.19.0",
     "db-migrate-pg": "^1.0.0",
-    "qs": "^6.7.0"
+    "qs": "^6.7.0",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
