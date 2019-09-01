@@ -11,13 +11,35 @@ services:
       POSTGRES_USER: root
       POSTGRES_DB: arabi_web
 
+  db-mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: arabi_web
+  
   adminer:
     image: adminer
     restart: always
     depends_on: 
       - "db-postgres"
+      - "db-mongo"
     ports:
       - 4001:8080
+
+  admin-mongo:
+    image: adicom/admin-mongo
+    restart: always
+    depends_on: 
+      - "db-mongo"
+    links:
+      - db-mongo
+    ports:
+      - 4005:1234
+
 
   arabi-oauth2:
     image: arabi_oauth2_image
@@ -47,8 +69,10 @@ services:
     restart: always
     links:
       - db-postgres
+      - db-mongo
     depends_on: 
       - "db-postgres"
+      - "db-mongo"
 
   arabi-frontend:
     image: arabi_frontend_image:latest

@@ -2,11 +2,13 @@ import graphene
 import blog.schema
 import settings.schema
 import timeline.schema
+import contentType.schema
 
 class Query(
     blog.schema.Query,
     settings.schema.Query,
     timeline.schema.Query,
+    contentType.schema.Query,
 
     graphene.ObjectType):  
     # This class will inherit from multiple Queries

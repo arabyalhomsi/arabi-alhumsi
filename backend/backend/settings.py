@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'settings',
-    'timeline'
+    'timeline',
+    'contentType'
 ]
 
 GRAPHENE = {  
@@ -97,7 +98,15 @@ DATABASES = {
         'HOST': 'db-postgres',
         'PORT': 5432,
         'PASSWORD': 'root'
-    }
+    },
+    # 'nosql': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'arabi_web_nosql',
+    #     'USER': 'root',
+    #     'HOST': 'db-mongo',
+    #     'PORT': 27017,
+    #     'PASSWORD': 'root'
+    # }
 }
 
 
