@@ -4,3 +4,4 @@ graphene_django
 django-cors-headers
 bcrypt
 graphene-mongo
+django-seed

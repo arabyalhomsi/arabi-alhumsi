@@ -17,7 +17,6 @@ COPY . /app
 EXPOSE 8000
 
 # Define environment variable
-ENV NAME World
 ENV PYTHONUNBUFFERED 1
 
 

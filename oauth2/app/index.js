@@ -56,4 +56,16 @@ app.post('/token', function (req, res) {
     })
 })
 
+const { exec } = require('child_process');
+
+exec('db-migrate up', (err, stdout, stderr) => {
+    if (err) {
+        return;
+    }
+
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+});
+
+
 app.listen(8080)

@@ -24,4 +24,8 @@ python manage.py makemigrations
 
 python manage.py migrate
 
+# create django root user (only development mode)
+python manage.py syncdb --noinput
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('root', 'root@root.com', 'root')" | python manage.py shell
+
 python manage.py runserver 0.0.0.0:8000

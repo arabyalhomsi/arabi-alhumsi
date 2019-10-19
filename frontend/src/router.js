@@ -82,6 +82,15 @@ const router = new Router({
           component: () => 
             import("./views/Admin/Blog/AdminBlogPost.vue")
         },
+        {
+          path: 'content-manager',
+          name: 'contentManager',
+          meta: {
+            auth: false
+          },
+          component: () =>
+            import ("./views/Admin/ContentManager/ContentManager.vue")
+        }
       ]
     }
   ]

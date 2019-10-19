@@ -16,7 +16,7 @@ class Type(Document):
     name = StringField()
     fields = EmbeddedDocumentListField(Field)
 
-# TODO: finalize graphene-mongo (remove edges nodes and stuff by implementing it with resolve)
+# TODO: content type manager
 
 
 # python manage.py migrate --database=nosql
