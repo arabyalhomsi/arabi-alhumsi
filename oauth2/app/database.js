@@ -27,7 +27,7 @@ class Database {
         }, {
             freezeTableName: true,
             timestamps: false,
-            tableName: 'oauth_user'
+            tableName: 'auth_user'
         })
     }
 
