@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('auth_codes', {
+  db.createTable('oauth_codes', {
     code: {
       type: 'string',
       primaryKey: true
@@ -29,7 +29,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.dropTable('auth_codes', callback)
+  db.dropTable('oauth_codes', callback)
 };
 
 exports._meta = {

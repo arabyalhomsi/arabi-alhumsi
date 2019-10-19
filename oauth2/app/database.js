@@ -27,7 +27,7 @@ class Database {
         }, {
             freezeTableName: true,
             timestamps: false,
-            tableName: 'auth_user'
+            tableName: 'oauth_user'
         })
     }
 
@@ -46,7 +46,7 @@ class Database {
         }, {
             freezeTableName: true,
             timestamps: false,
-            tableName: 'auth_tokens'
+            tableName: 'oauth_tokens'
         })
     }
 
@@ -64,7 +64,7 @@ class Database {
         }, {
             freezeTableName: true,
             timestamps: false,
-            tableName: 'auth_clients'
+            tableName: 'oauth_clients'
         })
     }
 
@@ -82,7 +82,7 @@ class Database {
         }, {
             freezeTableName: true,
             timestamps: false,
-            tableName: 'auth_codes'
+            tableName: 'oauth_codes'
         })
     }
     

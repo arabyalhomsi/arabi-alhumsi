@@ -15,21 +15,22 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('auth_clients', {
-    id: {
+  db.createTable('oauth_tokens', {
+    access_token: {
       type: 'string',
       primaryKey: true
     },
-    secret: 'string',
-    redirect_uris: 'string',
-    grants: 'string',
-    access_token_lifetime: 'int',
-    refresh_access_token_lifetime: 'int'
+    refresh_token: 'string',
+    scope: 'string',
+    access_token_expires_at: 'datetime',
+    refresh_token_expires_at: 'datetime',
+    client_id: 'string',
+    user_id: 'int'
   }, callback)
 };
 
 exports.down = function(db, callback) {
-  db.dropTable('auth_clients', callback)
+  db.dropTable('oauth_tokens', callback)
 };
 
 exports._meta = {
